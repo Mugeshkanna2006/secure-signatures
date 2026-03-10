@@ -14,16 +14,304 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: string
+          id: string
+          ip_address: string | null
+          resource_id: string
+          resource_type: string
+          user_agent: string | null
+          user_id: string | null
+          user_name: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details: string
+          id?: string
+          ip_address?: string | null
+          resource_id: string
+          resource_type: string
+          user_agent?: string | null
+          user_id?: string | null
+          user_name: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: string
+          id?: string
+          ip_address?: string | null
+          resource_id?: string
+          resource_type?: string
+          user_agent?: string | null
+          user_id?: string | null
+          user_name?: string
+        }
+        Relationships: []
+      }
+      certificates: {
+        Row: {
+          created_at: string
+          fingerprint: string
+          id: string
+          issuer: string
+          public_key: string
+          serial_number: string
+          status: Database["public"]["Enums"]["certificate_status"]
+          subject: string
+          updated_at: string
+          user_id: string
+          valid_from: string
+          valid_to: string
+        }
+        Insert: {
+          created_at?: string
+          fingerprint: string
+          id?: string
+          issuer?: string
+          public_key: string
+          serial_number: string
+          status?: Database["public"]["Enums"]["certificate_status"]
+          subject: string
+          updated_at?: string
+          user_id: string
+          valid_from?: string
+          valid_to?: string
+        }
+        Update: {
+          created_at?: string
+          fingerprint?: string
+          id?: string
+          issuer?: string
+          public_key?: string
+          serial_number?: string
+          status?: Database["public"]["Enums"]["certificate_status"]
+          subject?: string
+          updated_at?: string
+          user_id?: string
+          valid_from?: string
+          valid_to?: string
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          current_signer_index: number
+          description: string | null
+          expires_at: string | null
+          file_name: string
+          file_path: string | null
+          file_size: number
+          id: string
+          status: Database["public"]["Enums"]["document_status"]
+          title: string
+          type: Database["public"]["Enums"]["document_type"]
+          updated_at: string
+          uploaded_by: string
+          version: number
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          current_signer_index?: number
+          description?: string | null
+          expires_at?: string | null
+          file_name: string
+          file_path?: string | null
+          file_size?: number
+          id?: string
+          status?: Database["public"]["Enums"]["document_status"]
+          title: string
+          type?: Database["public"]["Enums"]["document_type"]
+          updated_at?: string
+          uploaded_by: string
+          version?: number
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          current_signer_index?: number
+          description?: string | null
+          expires_at?: string | null
+          file_name?: string
+          file_path?: string | null
+          file_size?: number
+          id?: string
+          status?: Database["public"]["Enums"]["document_status"]
+          title?: string
+          type?: Database["public"]["Enums"]["document_type"]
+          updated_at?: string
+          uploaded_by?: string
+          version?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          certificate_expiry: string | null
+          certificate_status:
+            | Database["public"]["Enums"]["certificate_status"]
+            | null
+          created_at: string
+          department: string | null
+          email: string
+          employee_id: string | null
+          id: string
+          last_login: string | null
+          name: string
+          student_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          certificate_expiry?: string | null
+          certificate_status?:
+            | Database["public"]["Enums"]["certificate_status"]
+            | null
+          created_at?: string
+          department?: string | null
+          email: string
+          employee_id?: string | null
+          id?: string
+          last_login?: string | null
+          name?: string
+          student_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          certificate_expiry?: string | null
+          certificate_status?:
+            | Database["public"]["Enums"]["certificate_status"]
+            | null
+          created_at?: string
+          department?: string | null
+          email?: string
+          employee_id?: string | null
+          id?: string
+          last_login?: string | null
+          name?: string
+          student_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      signature_requests: {
+        Row: {
+          certificate_id: string | null
+          created_at: string
+          document_id: string
+          id: string
+          rejected_at: string | null
+          rejection_reason: string | null
+          requested_at: string
+          sign_order: number
+          signature_data: string | null
+          signed_at: string | null
+          signer_email: string
+          signer_id: string
+          signer_name: string
+          status: Database["public"]["Enums"]["signature_status"]
+          updated_at: string
+        }
+        Insert: {
+          certificate_id?: string | null
+          created_at?: string
+          document_id: string
+          id?: string
+          rejected_at?: string | null
+          rejection_reason?: string | null
+          requested_at?: string
+          sign_order?: number
+          signature_data?: string | null
+          signed_at?: string | null
+          signer_email: string
+          signer_id: string
+          signer_name: string
+          status?: Database["public"]["Enums"]["signature_status"]
+          updated_at?: string
+        }
+        Update: {
+          certificate_id?: string | null
+          created_at?: string
+          document_id?: string
+          id?: string
+          rejected_at?: string | null
+          rejection_reason?: string | null
+          requested_at?: string
+          sign_order?: number
+          signature_data?: string | null
+          signed_at?: string | null
+          signer_email?: string
+          signer_id?: string
+          signer_name?: string
+          status?: Database["public"]["Enums"]["signature_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "signature_requests_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "faculty" | "staff" | "student"
+      certificate_status: "active" | "expired" | "revoked" | "pending"
+      document_status: "draft" | "pending" | "signed" | "rejected" | "expired"
+      document_type:
+        | "certificate"
+        | "transcript"
+        | "marksheet"
+        | "project_approval"
+        | "bonafide_letter"
+        | "administrative_form"
+        | "other"
+      signature_status: "pending" | "completed" | "rejected" | "expired"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +438,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "faculty", "staff", "student"],
+      certificate_status: ["active", "expired", "revoked", "pending"],
+      document_status: ["draft", "pending", "signed", "rejected", "expired"],
+      document_type: [
+        "certificate",
+        "transcript",
+        "marksheet",
+        "project_approval",
+        "bonafide_letter",
+        "administrative_form",
+        "other",
+      ],
+      signature_status: ["pending", "completed", "rejected", "expired"],
+    },
   },
 } as const
