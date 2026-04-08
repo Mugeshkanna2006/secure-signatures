@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, User, Shield, Bell, Palette } from 'lucide-react';
+import { Save, User, Shield, Bell } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { AppLayout } from '@/components/layout/AppLayout';
+import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -36,10 +36,7 @@ export default function Settings() {
     if (!user) return;
     setSaving(true);
     const { error } = await supabase.from('profiles').update({
-      name,
-      department,
-      employee_id: employeeId,
-      student_id: studentId,
+      name, department, employee_id: employeeId, student_id: studentId,
     }).eq('user_id', user.id);
     setSaving(false);
     if (error) {
@@ -51,17 +48,13 @@ export default function Settings() {
   };
 
   const mockUser = {
-    id: user?.id || '',
-    email: user?.email || '',
-    name: profile?.name || '',
-    role: (roles[0] as any) || 'student',
-    department: profile?.department,
-    certificateStatus: (profile?.certificate_status as any) || 'pending',
-    createdAt: new Date(),
+    id: user?.id || '', email: user?.email || '', name: profile?.name || '',
+    role: (roles[0] as any) || 'student', department: profile?.department,
+    certificateStatus: (profile?.certificate_status as any) || 'pending', createdAt: new Date(),
   };
 
   return (
-    <AppLayout user={mockUser as any} title="Settings">
+    <DashboardLayout user={mockUser as any} title="Settings">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto">
         <Tabs defaultValue="profile">
           <TabsList>
@@ -69,23 +62,16 @@ export default function Settings() {
             <TabsTrigger value="security"><Shield className="h-4 w-4 mr-2" />Security</TabsTrigger>
             <TabsTrigger value="notifications"><Bell className="h-4 w-4 mr-2" />Notifications</TabsTrigger>
           </TabsList>
-
           <TabsContent value="profile" className="mt-6 space-y-6">
-            <Card>
+            <Card className="shadow-card border-border/50">
               <CardHeader>
-                <CardTitle>Profile Information</CardTitle>
+                <CardTitle className="text-base">Profile Information</CardTitle>
                 <CardDescription>Update your personal details and department info</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Full Name</Label>
-                    <Input value={name} onChange={e => setName(e.target.value)} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Email</Label>
-                    <Input value={user?.email || ''} disabled className="bg-muted" />
-                  </div>
+                  <div className="space-y-2"><Label>Full Name</Label><Input value={name} onChange={e => setName(e.target.value)} /></div>
+                  <div className="space-y-2"><Label>Email</Label><Input value={user?.email || ''} disabled className="bg-muted" /></div>
                   <div className="space-y-2">
                     <Label>Department</Label>
                     <Select value={department} onValueChange={setDepartment}>
@@ -97,61 +83,39 @@ export default function Settings() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="space-y-2">
-                    <Label>Employee ID</Label>
-                    <Input value={employeeId} onChange={e => setEmployeeId(e.target.value)} placeholder="FAC-2024-001" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Student ID</Label>
-                    <Input value={studentId} onChange={e => setStudentId(e.target.value)} placeholder="STU-2024-001" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Role</Label>
-                    <Input value={roles.join(', ') || 'student'} disabled className="bg-muted capitalize" />
-                  </div>
+                  <div className="space-y-2"><Label>Employee ID</Label><Input value={employeeId} onChange={e => setEmployeeId(e.target.value)} placeholder="FAC-2024-001" /></div>
+                  <div className="space-y-2"><Label>Student ID</Label><Input value={studentId} onChange={e => setStudentId(e.target.value)} placeholder="STU-2024-001" /></div>
+                  <div className="space-y-2"><Label>Role</Label><Input value={roles.join(', ') || 'student'} disabled className="bg-muted capitalize" /></div>
                 </div>
                 <Separator />
                 <Button onClick={handleSaveProfile} disabled={saving}>
-                  <Save className="h-4 w-4 mr-2" />
-                  {saving ? 'Saving...' : 'Save Changes'}
+                  <Save className="h-4 w-4 mr-2" />{saving ? 'Saving...' : 'Save Changes'}
                 </Button>
               </CardContent>
             </Card>
           </TabsContent>
-
           <TabsContent value="security" className="mt-6 space-y-6">
-            <Card>
+            <Card className="shadow-card border-border/50">
               <CardHeader>
-                <CardTitle>Security Settings</CardTitle>
+                <CardTitle className="text-base">Security Settings</CardTitle>
                 <CardDescription>Manage your password and certificate</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Certificate Status</Label>
-                  <Input value={profile?.certificate_status || 'pending'} disabled className="bg-muted capitalize" />
-                </div>
-                <div className="space-y-2">
-                  <Label>Certificate Expiry</Label>
-                  <Input value={profile?.certificate_expiry ? new Date(profile.certificate_expiry).toLocaleDateString() : 'N/A'} disabled className="bg-muted" />
-                </div>
+                <div className="space-y-2"><Label>Certificate Status</Label><Input value={profile?.certificate_status || 'pending'} disabled className="bg-muted capitalize" /></div>
+                <div className="space-y-2"><Label>Certificate Expiry</Label><Input value={profile?.certificate_expiry ? new Date(profile.certificate_expiry).toLocaleDateString() : 'N/A'} disabled className="bg-muted" /></div>
                 <Separator />
                 <Button variant="outline" onClick={async () => {
                   if (!user?.email) return;
-                  await supabase.auth.resetPasswordForEmail(user.email, {
-                    redirectTo: `${window.location.origin}/reset-password`,
-                  });
+                  await supabase.auth.resetPasswordForEmail(user.email, { redirectTo: `${window.location.origin}/reset-password` });
                   toast({ title: 'Email sent', description: 'Check your inbox for password reset.' });
-                }}>
-                  Change Password
-                </Button>
+                }}>Change Password</Button>
               </CardContent>
             </Card>
           </TabsContent>
-
           <TabsContent value="notifications" className="mt-6 space-y-6">
-            <Card>
+            <Card className="shadow-card border-border/50">
               <CardHeader>
-                <CardTitle>Notification Preferences</CardTitle>
+                <CardTitle className="text-base">Notification Preferences</CardTitle>
                 <CardDescription>Choose what notifications you receive</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -162,10 +126,7 @@ export default function Settings() {
                   { label: 'Signature rejected', desc: 'When a signature is rejected' },
                 ].map(item => (
                   <div key={item.label} className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium">{item.label}</p>
-                      <p className="text-xs text-muted-foreground">{item.desc}</p>
-                    </div>
+                    <div><p className="text-sm font-medium">{item.label}</p><p className="text-xs text-muted-foreground">{item.desc}</p></div>
                     <Switch defaultChecked />
                   </div>
                 ))}
@@ -174,6 +135,6 @@ export default function Settings() {
           </TabsContent>
         </Tabs>
       </motion.div>
-    </AppLayout>
+    </DashboardLayout>
   );
 }
