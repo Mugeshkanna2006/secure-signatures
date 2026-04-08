@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { AppLayout } from '@/components/layout/AppLayout';
+import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { DocumentList } from '@/components/dashboard/DocumentList';
 import { DocumentUpload } from '@/components/documents/DocumentUpload';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -24,19 +24,11 @@ const Documents = () => {
     const { data } = await supabase.from('documents').select('*').order('created_at', { ascending: false });
     if (data) {
       setDocuments(data.map(d => ({
-        id: d.id,
-        title: d.title,
-        description: d.description,
-        type: d.type as any,
-        status: d.status as any,
-        fileName: d.file_name,
-        fileSize: Number(d.file_size),
-        uploadedBy: d.uploaded_by,
-        uploadedAt: new Date(d.created_at),
-        version: d.version,
+        id: d.id, title: d.title, description: d.description, type: d.type as any,
+        status: d.status as any, fileName: d.file_name, fileSize: Number(d.file_size),
+        uploadedBy: d.uploaded_by, uploadedAt: new Date(d.created_at), version: d.version,
         currentSignerIndex: d.current_signer_index,
-        completedAt: d.completed_at ? new Date(d.completed_at) : undefined,
-        signatures: [],
+        completedAt: d.completed_at ? new Date(d.completed_at) : undefined, signatures: [],
       })));
     }
   };
@@ -47,7 +39,7 @@ const Documents = () => {
   };
 
   return (
-    <AppLayout user={currentUser as any} title="Documents" pendingCount={0}>
+    <DashboardLayout user={currentUser as any} title="Documents" pendingCount={0}>
       <div className="space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 flex-1">
@@ -64,7 +56,7 @@ const Documents = () => {
             </div>
             <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
               <DialogTrigger asChild>
-                <Button variant="accent"><Plus className="h-4 w-4 mr-2" />Upload Document</Button>
+                <Button><Plus className="h-4 w-4 mr-2" />Upload Document</Button>
               </DialogTrigger>
               <DialogContent className="max-w-3xl p-0 overflow-hidden">
                 <div className="p-6"><DocumentUpload /></div>
@@ -76,7 +68,7 @@ const Documents = () => {
         <Tabs defaultValue="all" className="w-full">
           <TabsList>
             <TabsTrigger value="all">All Documents</TabsTrigger>
-            <TabsTrigger value="pending">Pending<span className="ml-1.5 bg-pending/20 text-pending px-1.5 py-0.5 rounded text-xs">{documents.filter(d => d.status === 'pending').length}</span></TabsTrigger>
+            <TabsTrigger value="pending">Pending<span className="ml-1.5 bg-warning/15 text-warning px-1.5 py-0.5 rounded text-xs">{documents.filter(d => d.status === 'pending').length}</span></TabsTrigger>
             <TabsTrigger value="signed">Signed</TabsTrigger>
             <TabsTrigger value="rejected">Rejected</TabsTrigger>
           </TabsList>
@@ -86,7 +78,7 @@ const Documents = () => {
           <TabsContent value="rejected" className="mt-4"><DocumentList documents={documents.filter(d => d.status === 'rejected')} title="Rejected" showAll /></TabsContent>
         </Tabs>
       </div>
-    </AppLayout>
+    </DashboardLayout>
   );
 };
 

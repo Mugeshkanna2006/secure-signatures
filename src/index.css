@@ -2,121 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ADSMS Design System - Academic Digital Signature Management */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* Core Brand Colors - Deep Navy & Trust */
-    --background: 210 20% 98%;
-    --foreground: 222 47% 11%;
+    /* Blue SaaS Primary (#2563EB) */
+    --background: 220 14% 96%;
+    --foreground: 224 71% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 224 71% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 224 71% 4%;
 
-    /* Primary - Deep Navy Blue (Trust & Authority) */
-    --primary: 222 47% 20%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Soft Slate */
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 222 47% 20%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
 
-    /* Muted - Subtle backgrounds */
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    /* Accent - Emerald for verification/success states */
-    --accent: 160 84% 39%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
-    /* Status Colors */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
-    
+
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    /* Pending - Amber */
     --pending: 45 93% 47%;
     --pending-foreground: 0 0% 0%;
 
-    /* Verified - Teal */
-    --verified: 168 76% 36%;
+    --verified: 142 76% 36%;
     --verified-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 47% 20%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.625rem;
+    --radius: 0.75rem;
 
-    /* Sidebar */
+    /* Sidebar - Dark */
     --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 222 47% 18%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 222 47% 18%;
-    --sidebar-ring: 160 84% 39%;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(222 47% 20%), hsl(222 47% 30%));
-    --gradient-accent: linear-gradient(135deg, hsl(160 84% 39%), hsl(168 76% 36%));
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(222 47% 20%) 50%, hsl(215 50% 30%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
+    --sidebar-ring: 217 91% 60%;
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -2px hsl(222 47% 11% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.1);
-    --shadow-card: 0 1px 3px 0 hsl(222 47% 11% / 0.1), 0 1px 2px -1px hsl(222 47% 11% / 0.1);
-    --shadow-elevated: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.1);
+    --shadow-sm: 0 1px 2px 0 hsl(220 13% 91% / 0.6);
+    --shadow-md: 0 4px 6px -1px hsl(220 13% 91% / 0.5), 0 2px 4px -2px hsl(220 13% 91% / 0.5);
+    --shadow-lg: 0 10px 15px -3px hsl(220 13% 91% / 0.4), 0 4px 6px -4px hsl(220 13% 91% / 0.4);
+    --shadow-card: 0 1px 3px 0 hsl(220 13% 91% / 0.5), 0 1px 2px -1px hsl(220 13% 91% / 0.5);
+    --shadow-elevated: 0 20px 25px -5px hsl(220 13% 91% / 0.3), 0 8px 10px -6px hsl(220 13% 91% / 0.3);
   }
 
   .dark {
     --background: 222 47% 7%;
     --foreground: 210 40% 98%;
-
     --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222 47% 11%;
-
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 222 47% 18%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 222 47% 15%;
     --muted-foreground: 215 20% 65%;
-
-    --accent: 160 84% 45%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 222 47% 18%;
     --input: 222 47% 18%;
-    --ring: 160 84% 45%;
-
+    --ring: 217 91% 60%;
     --sidebar-background: 222 47% 7%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 160 84% 45%;
-    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 222 47% 15%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 222 47% 15%;
-    --sidebar-ring: 160 84% 45%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -124,133 +102,35 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-muted;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground/50;
-  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-muted-foreground/20 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/40; }
 }
 
 @layer components {
-  /* Glass morphism effect */
-  .glass {
-    @apply backdrop-blur-md bg-white/80 border border-white/20;
-  }
-
-  /* Status badge variants */
-  .status-verified {
-    @apply bg-verified text-verified-foreground;
-  }
-
-  .status-pending {
-    @apply bg-pending text-pending-foreground;
-  }
-
-  .status-rejected {
-    @apply bg-destructive text-destructive-foreground;
-  }
-
-  /* Card hover effect */
   .card-interactive {
     @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
   }
-
-  /* Signature preview container */
-  .signature-preview {
-    @apply border-2 border-dashed border-muted-foreground/20 rounded-lg p-4 bg-muted/30;
-  }
-
-  /* Document thumbnail */
-  .document-thumbnail {
-    @apply aspect-[3/4] rounded-lg overflow-hidden bg-muted flex items-center justify-center;
-  }
+  .status-verified { @apply bg-verified text-verified-foreground; }
+  .status-pending { @apply bg-pending text-pending-foreground; }
+  .status-rejected { @apply bg-destructive text-destructive-foreground; }
 }
 
 @layer utilities {
-  /* Animation utilities */
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.5s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.3s ease-out forwards;
-  }
-
-  .animate-pulse-subtle {
-    animation: pulseSubtle 2s ease-in-out infinite;
-  }
+  .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+  .animate-slide-up { animation: slideUp 0.4s ease-out forwards; }
 
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-
   @keyframes slideUp {
-    from { 
-      opacity: 0; 
-      transform: translateY(20px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
-  }
-
-  @keyframes scaleIn {
-    from { 
-      opacity: 0; 
-      transform: scale(0.95); 
-    }
-    to { 
-      opacity: 1; 
-      transform: scale(1); 
-    }
-  }
-
-  @keyframes pulseSubtle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  /* Gradient text */
-  .text-gradient-primary {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
-  }
-
-  .text-gradient-accent {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-accent);
-  }
-
-  /* Background gradients */
-  .bg-gradient-hero {
-    background-image: var(--gradient-hero);
-  }
-
-  .bg-gradient-card {
-    background-image: var(--gradient-card);
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }

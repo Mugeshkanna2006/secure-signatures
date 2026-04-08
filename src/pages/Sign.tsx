@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FileSignature, CheckCircle2, Clock, ArrowRight, FileText, AlertCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { AppLayout } from '@/components/layout/AppLayout';
+import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -153,7 +153,7 @@ const Sign = () => {
   };
 
   return (
-    <AppLayout user={currentUser as any} title="Sign Documents" pendingCount={pendingDocs.length}>
+    <DashboardLayout user={currentUser as any} title="Sign Documents" pendingCount={pendingDocs.length}>
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold">Documents Awaiting Your Signature</h2>
@@ -243,7 +243,7 @@ const Sign = () => {
           </div>
         )}
       </div>
-    </AppLayout>
+    </DashboardLayout>
   );
 };
 

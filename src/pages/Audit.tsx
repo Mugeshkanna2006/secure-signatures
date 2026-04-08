@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { AppLayout } from '@/components/layout/AppLayout';
+import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { AuditLogList } from '@/components/dashboard/AuditLogList';
 import { AuditLog } from '@/types/adsms';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -44,7 +44,7 @@ const Audit = () => {
     : logs;
 
   return (
-    <AppLayout user={currentUser as any} title="Audit Logs" pendingCount={0}>
+    <DashboardLayout user={currentUser as any} title="Audit Logs" pendingCount={0}>
       <div className="space-y-6">
         <div className="flex items-center gap-4">
           <div className="relative flex-1 max-w-md">
@@ -64,7 +64,7 @@ const Audit = () => {
         </div>
         <AuditLogList logs={filteredLogs} maxHeight="calc(100vh - 280px)" />
       </div>
-    </AppLayout>
+    </DashboardLayout>
   );
 };
 
