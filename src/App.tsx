@@ -35,10 +35,10 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/auth" element={<PublicRoute><Auth /></PublicRoute>} />
     <Route path="/reset-password" element={<ResetPassword />} />
-    <Route path="/verify" element={<Verify />} />
     <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
     <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
     <Route path="/sign" element={<ProtectedRoute><Sign /></ProtectedRoute>} />
+    <Route path="/verify" element={<ProtectedRoute><Verify /></ProtectedRoute>} />
     <Route path="/audit" element={<ProtectedRoute><Audit /></ProtectedRoute>} />
     <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
     <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
